@@ -1,0 +1,16 @@
+{%  extends 'base.html' %}
+
+{%  block content %}
+
+    <h1>Hello blog!</h1>
+
+    <h2>There is {{ posts.count }} post{{ posts.count|pluralize }} written</h2>
+
+    {% for post in posts %}
+        <div>
+            <h2><a href="{% url 'blog:detail' post.id %}">{{ post.post_title }}</a></h2>
+            <h5>{{ post.post_date|date:'M d Y'|upper }}</h5>
+            <p>{{ post.post_content|truncatechars:100 }}</p>
+        </div>
+    {% endfor %}
+{% endblock %}
